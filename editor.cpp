@@ -83,12 +83,17 @@ class $modify(KernoEditor, LevelEditorLayer) {
     }
 
     void onReadout(CCObject*) {
-        if (!this->m_startPosObjects || this->m_startPosObjects->count() == 0) {
+        // Find the Start Position by its object ID (31, verify).
+        GameObject* startPos = nullptr;
+        if (this->m_objects) {
+            for (auto* obj : CCArrayExt<GameObject*>(this->m_objects)) {
+                if (obj->m_objectID == 31) { startPos = obj; break; }
+            }
+        }
+        if (!startPos) {
             Notification::create("No Start Position placed", NotificationIcon::Warning, 2.f)->show();
             return;
         }
-
-        auto startPos = static_cast<GameObject*>(this->m_startPosObjects->objectAtIndex(0));
         float stopX = startPos->getPositionX();
 
         // Collect every object before the Start Position, sorted left to right.
