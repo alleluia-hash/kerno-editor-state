@@ -104,7 +104,7 @@ class $modify(KernoEditor, LevelEditorLayer) {
 
         // Starting state from the level settings.
         kerno_editor::State state;
-        auto settings = this->m_level->m_levelSettings;
+        auto settings = this->m_levelSettings;
         if (settings) {
             state.speed = static_cast<int>(settings->m_startSpeed);
             state.mode = settings->m_startMode;
