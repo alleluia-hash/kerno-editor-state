@@ -1,0 +1,32 @@
+name: Build Geode mod
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: Android64
+            os: ubuntu-latest
+          - target: Win64
+            os: windows-latest
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build mod
+        id: build
+        uses: geode-sdk/build-geode-mod@main
+        with:
+          target: ${{ matrix.target }}
+          sdk: v5.11.2
+          bindings-ref: main
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kerno-editor-state-${{ matrix.target }}
+          path: ${{ steps.build.outputs.build-output }}
