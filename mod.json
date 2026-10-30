@@ -1,0 +1,13 @@
+{
+  "geode": "5.11.2",
+  "gd": {
+    "win": "2.2081",
+    "android": "2.2081"
+  },
+  "version": "1.0.0",
+  "id": "kerno.editor-state",
+  "name": "Kerno's Editor State",
+  "developer": "Kerno",
+  "description": "Shows the vehicle, speed, gravity, size and mirror state at the Start Position in the level editor.",
+  "tags": ["editor", "enhancements"]
+}
