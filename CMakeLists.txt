@@ -7,6 +7,9 @@ endif()
 
 add_subdirectory($ENV{GEODE_SDK} ${CMAKE_CURRENT_BINARY_DIR}/geode)
 
-file(GLOB SOURCES *.cpp)
+set(SOURCES
+    editor.cpp
+)
+
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
 setup_geode_mod(${PROJECT_NAME})
