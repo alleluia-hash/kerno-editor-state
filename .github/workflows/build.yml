@@ -2,6 +2,7 @@ name: Build Geode mod
 
 on:
   push:
+  pull_request:
   workflow_dispatch:
 
 jobs:
@@ -16,7 +17,7 @@ jobs:
             os: windows-latest
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Build mod
         id: build
@@ -26,7 +27,7 @@ jobs:
           sdk: v5.11.2
           bindings-ref: main
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: kerno-editor-state-${{ matrix.target }}
           path: ${{ steps.build.outputs.build-output }}
